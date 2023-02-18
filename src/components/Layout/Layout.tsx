@@ -1,38 +1,47 @@
-import { useEffect, useState } from "react"
-import { Outlet } from "react-router-dom"
-import { useAppDispatch } from "../../hooks/useRedux"
-import { useRoles } from "../../hooks/useStateHooks/useRoles"
-import { currentUserExists, getCurrentUser } from "../../services/authService"
-import { fetchRoles } from "../../store/slices/roleSlice"
-import { fetchUser } from "../../store/slices/userSlice"
-import { Loader } from "../../UI/Loaders/Loader"
-import { Container } from "../Containers/Container"
+import cl from "./Layout.module.css"
 import { Footer } from "../Footer/Footer"
 import { Header } from "../Header/Header"
-import cl from './Layout.module.css'
+import { useUser } from "../../hooks/useStateHooks/useUser"
+import { Loader } from "../../UI/loaders/Loader"
+import { useAppDispatch } from "../../hooks/useRedux"
+import { currentAdminExists, currentUserExists, getCurrentAdmin, getCurrentUser } from "../../services/authService"
+import { fetchUserResponse } from "../../store/slices/userSlice"
+import { addUser } from "../../store/slices/userSlice"
+import { Roles } from "../../types/IRole"
+import { useEffect } from "react"
+import { Outlet } from "react-router-dom"
 
 export const Layout = () => {
 
     const dispatch = useAppDispatch()
-    const { roles, isRolesLoading, rolesError } = useRoles()
-
-    const [isDataLoading, setDataLoading] = useState(false)
+    const { isUserLoading } = useUser()
 
     useEffect(() => {
-        setDataLoading(true)
-        const isUser = currentUserExists()
-        let currentUserId: number
-        if (isUser) {
-            currentUserId = Number(getCurrentUser() as string)
-            dispatch(fetchUser(currentUserId))
-        }
-        Promise.all([
-            dispatch(fetchRoles())
-        ])
-        setDataLoading(false)
-    }, [])
+        let roleName: Roles
+        let username = ""
 
-    if (isDataLoading) {
+        async function getData() {
+            if (currentUserExists()) {
+                username = getCurrentUser()!
+                roleName = "Customer"
+            } else if (currentAdminExists()) {
+                username = getCurrentAdmin()!
+                roleName = "Admin"
+            }
+            if (username) {
+                const user = (await dispatch(fetchUserResponse(username))).payload
+                if (user && typeof user !== "string") {
+                    dispatch(addUser({
+                        ...user,
+                        roleName,
+                    }))
+                }
+            }
+        }
+        getData()
+    }, [dispatch])
+
+    if (isUserLoading) {
         return <Loader />
     }
 

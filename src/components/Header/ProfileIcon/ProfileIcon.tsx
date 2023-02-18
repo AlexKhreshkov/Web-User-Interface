@@ -1,8 +1,11 @@
-import React, { memo } from 'react'
-import { IoExitOutline, IoPersonOutline } from "react-icons/io5"
+import { useUser } from "../../../hooks/useStateHooks/useUser"
 import { Link } from "react-router-dom"
+import { IoPersonOutline } from "react-icons/io5"
+import { memo } from "react"
 
 export const ProfileIcon = memo(() => {
+
+    const { user } = useUser()
 
     return (
         <>
@@ -10,9 +13,8 @@ export const ProfileIcon = memo(() => {
                 <Link to="/">
                     <IoPersonOutline />
                 </Link>
+                <span>{user?.username}</span>
             </li>
-            {/* <li>{username}</li>
-            <li onClick={logout}><IoExitOutline /></li> */}
         </>
     )
 })

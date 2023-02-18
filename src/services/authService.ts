@@ -1,25 +1,28 @@
-const customerRoleKey = "Customer";
-const adminRoleKey = "Admin";
+export const customerRoleKey = "Customer"
+export const adminRoleKey = "Admin"
 
 //Customer: 1
 //Admin: 2
 
-export const logout = () => {
-  localStorage.removeItem(customerRoleKey);
-};
+export const userLogout = () => {
+    localStorage.removeItem(customerRoleKey)
+}
 
-export const login = (userId: number) => {
-  localStorage.setItem(customerRoleKey, `${userId}`);
-};
+export const userLogin = (username: string) => {
+    adminLogout()
+    localStorage.setItem(customerRoleKey, `${username}`)
+}
 
 export const adminLogout = () => {
-  localStorage.removeItem(adminRoleKey);
+    localStorage.removeItem(adminRoleKey)
 };
 
 export const adminLogin = (isAdmin: string) => {
-  localStorage.setItem(adminRoleKey, isAdmin);
-};
+    userLogout()
+    localStorage.setItem(adminRoleKey, isAdmin)
+}
 
-export const getAdminRole = () => localStorage.getItem(adminRoleKey);
-export const currentUserExists = (): boolean => !!localStorage.getItem(customerRoleKey);
-export const getCurrentUser = () => localStorage.getItem(customerRoleKey);
+export const getCurrentAdmin = () => localStorage.getItem(adminRoleKey)
+export const getCurrentUser = () => localStorage.getItem(customerRoleKey)
+export const currentUserExists = (): boolean => !!localStorage.getItem(customerRoleKey)
+export const currentAdminExists = (): boolean => !!localStorage.getItem(adminRoleKey)

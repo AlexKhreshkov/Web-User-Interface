@@ -1,0 +1,10 @@
+.subtitle {
+    text-align: end;
+}
+
+.subtitle span {
+    margin-left: 5px;
+    text-decoration: underline;
+    color: var(--blue-400);
+    cursor: pointer;
+}

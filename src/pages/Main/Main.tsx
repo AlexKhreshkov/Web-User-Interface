@@ -1,6 +1,6 @@
+import cl from "./Main.module.css"
 import { Container } from "../../components/Containers/Container"
 
-import cl from './Main.module.css'
 
 const Main = () => {
 

@@ -1,6 +1,6 @@
-import React, { memo } from 'react'
+import cl from "../Header.module.css"
+import React, { memo } from "react"
 import { Link } from "react-router-dom"
-import cl from '../Header.module.css'
 
 export const Logo = memo(() => {
     return (

@@ -1,0 +1,49 @@
+.input__container {
+    position: relative;
+}
+
+.input {
+    padding: 7px 10px;
+    border-radius: var(--radius1);
+    border: 1px solid black;
+    transition: 300ms;
+    font-size: 1rem;
+}
+
+.input:hover,
+.input:focus {
+    border: 1px solid var(--blue-400);
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.invalidInput {
+    padding: 7px 10px;
+    border-radius: var(--radius1);
+    border: 1px solid red;
+    transition: 300ms;
+    font-size: 1rem;
+}
+
+.input:focus {
+    border: 1px solid var(--blue-400);
+}
+
+.h16px {
+    min-height: 20px;
+}
+
+.errorText {
+    margin: 3px 0;
+    min-height: 20px;
+    color: red;
+    font-size: 14px;
+}
+
+.passwordToggle {
+    position: absolute;
+    top: 27px;
+    left: 93%;
+}

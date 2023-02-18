@@ -1,0 +1,46 @@
+{
+    "extends": [
+        "react-app",
+        "react-app/jest"
+    ],
+    "plugins": [
+        "unused-imports"
+    ],
+    "rules": {
+        "no-unused-vars": "warn", // or "@typescript-eslint/no-unused-vars": "off",
+        "no-console": "warn",
+        "quotes": [
+            "warn",
+            "double"
+        ],
+        "jsx-quotes": [
+            "warn",
+            "prefer-double"
+        ],
+        "prefer-const": "warn",
+        "indent": [
+            "warn",
+            4
+        ],
+        "comma-dangle": [
+            "warn",
+            "always-multiline"
+        ],
+        "import/order": [
+            "warn",
+            {
+                "groups": [
+                    "index",
+                    "sibling",
+                    "parent",
+                    "internal",
+                    "external",
+                    "builtin",
+                    "object",
+                    "type"
+                ],
+                "newlines-between": "never"
+            }
+        ]
+    }
+}

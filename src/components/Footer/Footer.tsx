@@ -1,6 +1,6 @@
-import React from 'react'
+import cl from "./Footer.module.css"
 import { Container } from "../Containers/Container"
-import cl from './Footer.module.css'
+import React from "react"
 
 export const Footer = () => {
     return (

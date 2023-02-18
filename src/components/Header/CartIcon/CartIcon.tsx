@@ -1,11 +1,14 @@
-import React, { memo } from 'react'
+import cl from "./CartIcon.module.css"
+import React, { memo } from "react"
 import { IoCartOutline } from "react-icons/io5"
-import cl from './CartIcon.module.css'
 
 export const CartIcon = memo(() => {
+
+    const cartCount = 1
+
     return (
         <li className={cl.cart}>
-            <div className={cl.cart_count}>1</div>
+            <div className={cl.cart_count}>{cartCount}</div>
             <IoCartOutline />
         </li>
     )
