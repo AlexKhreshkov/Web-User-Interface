@@ -1,5 +1,8 @@
-# `run app with fake db`
+# `Run app with fake db`
 npm run dev
+
+## `Run test`
+npm run test
 
 ## `Database diagram`
 
