@@ -1,0 +1,33 @@
+.product__container {
+    padding: 20px 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product__header {
+    display: flex;
+}
+
+.product__name {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.product__price {
+    color: rgb(109, 236, 137);
+}
+
+.product__image {}
+
+.product__image img {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.product__description {}

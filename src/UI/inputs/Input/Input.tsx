@@ -15,6 +15,7 @@ interface IInputProps {
     maxLength?: number,
     error?: any
     setErrorFieldEmpty?: () => void
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 export const Input = (props: IInputProps) => {
