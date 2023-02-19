@@ -1,105 +1,141 @@
 {
-    "Role": [
-        {
-            "id": 1,
-            "name": "Customer"
-        },
-        {
-            "id": 2,
-            "name": "Admin"
-        }
-    ],
-    "User": [
-        {
-            "id": 1,
-            "username": "Alex123",
-            "password": "alex",
-            "role": 1,
-            "first_name": "Alex",
-            "last_name": "Khreshkov",
-            "email": "alex.khreshkov@gmail.com"
-        },
-        {
-            "id": 2,
-            "username": "John",
-            "password": "john",
-            "role": 1,
-            "first_name": "John",
-            "last_name": "John",
-            "email": "john@gmail.com"
-        },
-        {
-            "id": 3,
-            "username": "admin",
-            "password": "admin",
-            "role": 2,
-            "first_name": "admin",
-            "last_name": "admin",
-            "email": "admin@gmail.com"
-        }
-    ],
-    "Product": [
-        {
-            "sku": "HPRPB54Q32",
-            "name": "HP 15.6 FHD",
-            "description": "HP 15.6 FHD Intel Core i5-1235U 8GB RAM 512GB SSD Intel Iris Xe Windows 11 Laptop",
-            "price": 1200
-        },
-        {
-            "sku": "MCBK123AB1",
-            "name": "MacBook Air 13-inch",
-            "description": "MacBook Air 13-inch: Apple M1 Chip with 8 Core CPU and 7 Core GPU 256GB storage 8GB Memory - Gold",
-            "price": 1500
-        }
-    ],
-    "Cart": [
-        {
-            "id": 1,
-            "user_id": 1,
-            "total_cost": 0
-        }
-    ],
-    "Cart_Product": [
-        {
-            "id": 1,
-            "cart_id": 1,
-            "product_sku": "MCBK123AB1",
-            "quantity": 2
-        },
-        {
-            "id": 2,
-            "cart_id": 1,
-            "product_sku": "HPRPB54Q32",
-            "quantity": 1
-        }
-    ],
-    "Status": [
-        {
-            "id": 1,
-            "status": "formed"
-        },
-        {
-            "id": 2,
-            "status": "accpeted"
-        },
-        {
-            "id": 3,
-            "status": "declined"
-        }
-    ],
-    "Order": [
-        {
-            "id": 1,
-            "user_id": 1,
-            "created": "JS DATE",
-            "status_id": 1
-        },
-        {
-            "id": 2,
-            "user_id": 2,
-            "created": "JS DATE",
-            "status_id": 2
-        }
-    ],
-    "Order_Product": []
+  "Role": [
+    {
+      "id": 1,
+      "name": "Customer"
+    },
+    {
+      "id": 2,
+      "name": "Admin"
+    }
+  ],
+  "User": [
+    {
+      "id": 1,
+      "username": "Alex123",
+      "password": "alex",
+      "role": 1,
+      "first_name": "Alex",
+      "last_name": "Khreshkov",
+      "email": "alex.khreshkov@gmail.com"
+    },
+    {
+      "id": 2,
+      "username": "John",
+      "password": "john",
+      "role": 1,
+      "first_name": "John",
+      "last_name": "John",
+      "email": "john@gmail.com"
+    },
+    {
+      "id": 3,
+      "username": "admin",
+      "password": "admin",
+      "role": 2,
+      "first_name": "admin",
+      "last_name": "admin",
+      "email": "admin@gmail.com"
+    },
+    {
+      "username": "admin1",
+      "password": "admin",
+      "role": 1,
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "id": 4
+    },
+    {
+      "username": "admin2",
+      "password": "admin2",
+      "role": 1,
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "id": 5
+    },
+    {
+      "username": "admin3",
+      "password": "admin3",
+      "role": 1,
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "id": 6
+    },
+    {
+      "username": "admin4",
+      "password": "admin3sda",
+      "role": 1,
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "id": 7
+    }
+  ],
+  "Product": [
+    {
+      "sku": "HPRPB54Q32",
+      "name": "HP 15.6 FHD",
+      "description": "HP 15.6 FHD Intel Core i5-1235U 8GB RAM 512GB SSD Intel Iris Xe Windows 11 Laptop",
+      "price": 1200
+    },
+    {
+      "sku": "MCBK123AB1",
+      "name": "MacBook Air 13-inch",
+      "description": "MacBook Air 13-inch: Apple M1 Chip with 8 Core CPU and 7 Core GPU 256GB storage 8GB Memory - Gold",
+      "price": 1500
+    }
+  ],
+  "Cart": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "total_cost": 0
+    }
+  ],
+  "Cart_Product": [
+    {
+      "id": 1,
+      "cart_id": 1,
+      "product_sku": "MCBK123AB1",
+      "quantity": 2
+    },
+    {
+      "id": 2,
+      "cart_id": 1,
+      "product_sku": "HPRPB54Q32",
+      "quantity": 1
+    }
+  ],
+  "Status": [
+    {
+      "id": 1,
+      "status": "formed"
+    },
+    {
+      "id": 2,
+      "status": "accpeted"
+    },
+    {
+      "id": 3,
+      "status": "declined"
+    }
+  ],
+  "Order": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "created": "JS DATE",
+      "status_id": 1
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "created": "JS DATE",
+      "status_id": 2
+    }
+  ],
+  "Order_Product": []
 }

@@ -12,17 +12,20 @@ import { InputWithLable } from "../../UI/inputs/InputWithLabel/InputWithLabel"
 import { Loader } from "../../UI/loaders/Loader"
 import { BaseModal } from "../../UI/modals/BaseModal"
 import { getUserResponse, getUserWithRoleName } from "../../api/api"
+import { INVALID_PASSWORD, UNKNOWN_ERROR, USER_NOT_FOUND } from "../../constants/textContants"
 import { useCallback, useState } from "react"
 
 interface LoginModalProps {
+    isSignUpModal: boolean
     isLoginModal: boolean
     setLoginModal: React.Dispatch<React.SetStateAction<boolean>>
+    setSignUpModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const LoginModal = (props: LoginModalProps) => {
 
     const dispatch = useAppDispatch()
-    const { isLoginModal, setLoginModal } = props
+    const { isLoginModal, setLoginModal, setSignUpModal } = props
 
     const username = useInput("", {
         minLength: MIN_LOGIN_LENGTH,
@@ -37,13 +40,14 @@ export const LoginModal = (props: LoginModalProps) => {
 
     const openSignUpModal = useCallback(() => {
         setLoginModal(false)
-    }, [setLoginModal])
+        setSignUpModal(true)
+    }, [setLoginModal, setSignUpModal])
 
     const [authError, setAuthError] = useState("")
     const [isLoading, setLoading] = useState(false)
 
-    //MODAL CLOSE ATER ANY REQUEST BECAUSE STATE OF BUTTON WITH THIS MODAL ALSO CHANGE
-    //POSSIBLE SOLUTION TO STORE MODAL IN STATE OR SUBMIT FORM WITHOUT AsyncThunk
+    //MODAL CLOSES AFTER ANY REQUEST BECAUSE THE STATE OF THE BUTTON WITH THIS MODAL ALSO CHANGES
+    //POSSIBLE SOLUTION IS TO STORE MODAL IN THE STATE OR SUBMIT FORM WITHOUT AsyncThunk
 
     // const formHandler = (e: React.FormEvent<HTMLFormElement>) => {
     //     e.preventDefault()
@@ -109,13 +113,13 @@ export const LoginModal = (props: LoginModalProps) => {
                         setLoginModal(false)
                         setAuthError("")
                     } else {
-                        setAuthError("Unknown error")
+                        setAuthError(`${UNKNOWN_ERROR}`)
                     }
                 } else {
-                    setAuthError("Inwalid password")
+                    setAuthError(`${INVALID_PASSWORD}`)
                 }
             } else {
-                setAuthError("No user with this username")
+                setAuthError(`${USER_NOT_FOUND} with this username`)
             }
         }
         checkUser()
