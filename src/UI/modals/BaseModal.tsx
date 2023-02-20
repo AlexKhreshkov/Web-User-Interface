@@ -1,10 +1,12 @@
 import cl from "./BaseModal.module.css"
 import { useEffect, useState } from "react"
 
+
 interface BaseModallProps {
     title: string,
     isVisible: boolean
-    setModalState: React.Dispatch<React.SetStateAction<boolean>>
+    // setModalState: React.Dispatch<React.SetStateAction<boolean>> 
+    setModalState: any
     children: React.ReactNode
 }
 
@@ -18,8 +20,6 @@ export const BaseModal = (props: BaseModallProps) => {
         setModalState(false)
     }
 
-    //if click on modal during 0.5s (transition time) it won't close, but state will be changed => bug
-    //removed transtion to fix it
     const contentClickHandler = (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()
 
     useEffect(() => {

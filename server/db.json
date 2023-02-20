@@ -86,6 +86,18 @@
       "name": "MacBook Air 13-inch",
       "description": "MacBook Air 13-inch: Apple M1 Chip with 8 Core CPU and 7 Core GPU 256GB storage 8GB Memory - Gold",
       "price": 1500
+    },
+    {
+      "sku": "TESTPRODUCT1",
+      "name": "TESTPRODUCT1",
+      "description": "MacBook Air 13-inch: Apple M1 Chip with 8 Core CPU and 7 Core GPU 256GB storage 8GB Memory - Gold",
+      "price": 123
+    },
+    {
+      "sku": "TESTPRODUCT2",
+      "name": "TESTPRODUCT2",
+      "description": "TESTPRODUCT2",
+      "price": 4353
     }
   ],
   "Cart": [
@@ -95,20 +107,7 @@
       "total_cost": 0
     }
   ],
-  "Cart_Product": [
-    {
-      "id": 1,
-      "cart_id": 1,
-      "product_sku": "MCBK123AB1",
-      "quantity": 2
-    },
-    {
-      "id": 2,
-      "cart_id": 1,
-      "product_sku": "HPRPB54Q32",
-      "quantity": 1
-    }
-  ],
+  "Cart_Product": [],
   "Status": [
     {
       "id": 1,

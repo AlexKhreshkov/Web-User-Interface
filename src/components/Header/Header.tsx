@@ -7,17 +7,26 @@ import { LoginInButton } from "./LoginInButton/LoginInButton"
 import { Logout } from "./Logout/Logout"
 import { Container } from "../Containers/Container"
 import { useUser } from "../../hooks/useStateHooks/useUser"
-import React, { useState } from "react"
+import { useModalsState } from "../../hooks/useStateHooks/useModalsState"
+import { Cart } from "../Cart/Cart"
+import { LoginModal } from "../LoginModal/LoginModal"
+import { SignUpModal } from "../SignUpModal/SignUpModal"
+import { useState } from "react"
 
 export const Header = () => {
 
     const [isToggle, setToggle] = useState(false)
-    const handleToggle = () => setToggle(isToggle => !isToggle)
     const { user } = useUser()
+    const { isLoginModal, isSignUpModal, isCart } = useModalsState()
+
+    const handleToggle = () => setToggle(isToggle => !isToggle)
 
     return (
         <div className={cl.header__container}>
             <Container>
+                {isCart && <Cart />}
+                {isSignUpModal && <SignUpModal />}
+                {isLoginModal && <LoginModal />}
                 <div className={cl.header}>
                     <Logo />
                     <MenuToggle onClick={handleToggle} />
@@ -31,10 +40,10 @@ export const Header = () => {
                                 `${cl.header__links}`
                         }
                     >
-                        <CartIcon />
                         {user
                             ?
                             <>
+                                <CartIcon />
                                 <ProfileIcon />
                                 <Logout />
                             </>

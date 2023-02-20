@@ -11,7 +11,7 @@ import { IProduct } from "../../types/IProduct"
 import { IOption, Select } from "../../UI/select/Select"
 import { useProducts } from "../../hooks/useProducts"
 import { useProductsState } from "../../hooks/useStateHooks/useProductsState"
-import { ProductsList } from "../../modules/ProductsList/ProductsList"
+import { ProductsList } from "../../components/ProductsList/ProductsList"
 import { useEffect, useMemo, useState } from "react"
 
 const Main = () => {

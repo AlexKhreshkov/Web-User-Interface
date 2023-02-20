@@ -1,25 +1,25 @@
 import cl from "./Layout.module.css"
 import { Footer } from "../Footer/Footer"
 import { Header } from "../Header/Header"
-import { useUser } from "../../hooks/useStateHooks/useUser"
 import { Loader } from "../../UI/loaders/Loader"
 import { useAppDispatch } from "../../hooks/useRedux"
 import { currentAdminExists, currentUserExists, getCurrentAdmin, getCurrentUser } from "../../services/authService"
 import { fetchUserResponse } from "../../store/slices/userSlice"
 import { addUser } from "../../store/slices/userSlice"
 import { Roles } from "../../types/IRole"
-import { useEffect } from "react"
+import { fetchCartProducts, fetchProductsToCart, fetchUserCart } from "../../store/slices/cartSlice"
+import { useEffect, useState } from "react"
 import { Outlet } from "react-router-dom"
 
 export const Layout = () => {
 
     const dispatch = useAppDispatch()
-    const { isUserLoading } = useUser()
+    const [isLoading, setLoading] = useState(false)
 
     useEffect(() => {
         let roleName: Roles
         let username = ""
-
+        setLoading(true)
         async function getData() {
             if (currentUserExists()) {
                 username = getCurrentUser()!
@@ -37,11 +37,17 @@ export const Layout = () => {
                     }))
                 }
             }
+            if (roleName === "Customer") {
+                await dispatch(fetchUserCart())
+                await dispatch(fetchCartProducts())
+                await dispatch(fetchProductsToCart())
+            }
         }
         getData()
+        setLoading(false)
     }, [dispatch])
 
-    if (isUserLoading) {
+    if (isLoading) {
         return <Loader />
     }
 

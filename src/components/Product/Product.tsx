@@ -5,9 +5,11 @@ import { ProductHeader } from "./ProductHeader/ProductHeader"
 import { ProductImage } from "./ProductImage/ProductImage"
 import { ProductName } from "./ProductName/ProductName"
 import { ProductPrice } from "./ProductPrice/ProductPrice"
+import { AddToCart } from "../../UI/buttons/AddToCart"
 
 interface ProductProps {
-    id?: number
+    index: number
+    sku: string
     name: string
     price: number
     description: string
@@ -16,13 +18,14 @@ interface ProductProps {
 
 export const Product = (props: ProductProps) => {
 
-    const { id, name, price, description, image } = props
+    const { index, sku, name, price, description, image } = props
 
     return (
         <ProductContainer>
             <div className={cl.product}>
+                <AddToCart sku={sku}>Add to cart</AddToCart>
                 <ProductHeader>
-                    <span>{id}.</span>
+                    <span>{index}.</span>
                     <ProductName name={name} />
                 </ProductHeader>
                 <ProductPrice price={price} />

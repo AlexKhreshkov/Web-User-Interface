@@ -23,7 +23,7 @@ export const fetchProducts = createAsyncThunk<IProduct[], void, { rejectValue: s
             const products = productsResponse.data
             return products
         } catch (error) {
-            return rejectWithValue("Failed to fetch user")
+            return rejectWithValue("Failed to fetch products")
         }
     },
 )

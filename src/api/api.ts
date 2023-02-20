@@ -48,3 +48,17 @@ export const signUpUser = async (username: string, password: string) => {
         email: "",
     })
 }
+
+// export const fetchProductsToCart = async (cart_product: ICartProductResponse[]) => {
+//     const products = (await axios.get<IProduct[]>(`${BASE_URL}/product`)).data
+//     const productsToCart = []
+//     for (let item of cart_product) {
+//         const sku = item.product_sku
+//         for (let product of products) {
+//             if (product.sku === sku) {
+//                 productsToCart.push(product)
+//             }
+//         }
+//     }
+//     return productsToCart
+// }

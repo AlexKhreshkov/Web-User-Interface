@@ -1,4 +1,4 @@
-import { Product } from "../../components/Product/Product"
+import { Product } from "../Product/Product"
 import { IProduct } from "../../types/IProduct"
 
 interface ProductsListProps {
@@ -18,8 +18,9 @@ export const ProductsList = (props: ProductsListProps) => {
             <div>
                 {products.map((product, index) =>
                     <Product
-                        id={index + 1}
                         key={product.sku}
+                        index={index + 1}
+                        sku={product.sku}
                         name={product.name}
                         price={product.price}
                         description={product.description}

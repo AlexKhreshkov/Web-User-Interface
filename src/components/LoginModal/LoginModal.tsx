@@ -1,6 +1,6 @@
 import cl from "./LoginModal.module.css"
-import { ModalGlobalError } from "../../components/ModalGlobalError/ModalGlobalError"
-import { ModalSubtitle } from "../../components/ModalSubtitle/ModalSubtitle"
+import { ModalGlobalError } from "../ModalGlobalError/ModalGlobalError"
+import { ModalSubtitle } from "../ModalSubtitle/ModalSubtitle"
 import { MAX_LOGIN_LENGTH, MAX_PASSWORD_LENGTH, MIN_LOGIN_LENGTH, MIN_PASSWORD_LENGTH } from "../../constants/lengthConstants"
 import { useInput } from "../../hooks/useInput"
 import { useAppDispatch } from "../../hooks/useRedux"
@@ -13,19 +13,13 @@ import { Loader } from "../../UI/loaders/Loader"
 import { BaseModal } from "../../UI/modals/BaseModal"
 import { getUserResponse, getUserWithRoleName } from "../../api/api"
 import { INVALID_PASSWORD, UNKNOWN_ERROR, USER_NOT_FOUND } from "../../constants/textContants"
+import { useModalsState } from "../../hooks/useStateHooks/useModalsState"
 import { useCallback, useState } from "react"
 
-interface LoginModalProps {
-    isSignUpModal: boolean
-    isLoginModal: boolean
-    setLoginModal: React.Dispatch<React.SetStateAction<boolean>>
-    setSignUpModal: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-export const LoginModal = (props: LoginModalProps) => {
+export const LoginModal = () => {
 
     const dispatch = useAppDispatch()
-    const { isLoginModal, setLoginModal, setSignUpModal } = props
+    const { isLoginModal, setLoginModallState, setSignUpModalState } = useModalsState()
 
     const username = useInput("", {
         minLength: MIN_LOGIN_LENGTH,
@@ -39,54 +33,13 @@ export const LoginModal = (props: LoginModalProps) => {
     const sumbitButtonState = username.isValid && password.isValid
 
     const openSignUpModal = useCallback(() => {
-        setLoginModal(false)
-        setSignUpModal(true)
-    }, [setLoginModal, setSignUpModal])
+        setLoginModallState(false)
+        setSignUpModalState(true)
+    }, [setLoginModallState, setSignUpModalState])
 
     const [authError, setAuthError] = useState("")
     const [isLoading, setLoading] = useState(false)
 
-    //MODAL CLOSES AFTER ANY REQUEST BECAUSE THE STATE OF THE BUTTON WITH THIS MODAL ALSO CHANGES
-    //POSSIBLE SOLUTION IS TO STORE MODAL IN THE STATE OR SUBMIT FORM WITHOUT AsyncThunk
-
-    // const formHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault()
-    //     setLoading(true)
-    //     async function checkUser() {
-    //         const userResponse = (await dispatch(fetchUserResponse(username.value))).payload
-    //         if (userResponse && typeof userResponse !== "string") {
-    //             if (userResponse.password === password.value) {
-    //                 const userWithRoleName = (await dispatch(fetchUserWithRoleName(userResponse))).payload
-    //                 if (userWithRoleName && typeof userWithRoleName !== "string") {
-    //                     if (userWithRoleName.roleName === "Admin") {
-    //                         userLogout()
-    //                         adminLogin(userResponse.username)
-    //                     }
-    //                     if (userWithRoleName.roleName === "Customer") {
-    //                         adminLogout()
-    //                         userLogin(userResponse.username)
-    //                     }
-    //                     username.setValue("")
-    //                     username.setDirty(false)
-    //                     password.setValue("")
-    //                     password.setDirty(false)
-    //                     setLoginModal(false)
-    //                     setAuthError("")
-    //                 } else {
-    //                     setAuthError("Zxc password")
-    //                 }
-    //             } else {
-    //                 setAuthError("Inwalid password")
-    //             }
-    //         } else {
-    //             setAuthError("No user with this username")
-    //         }
-    //     }
-    //     checkUser()
-    //     setLoading(false)
-    // }
-
-    //REWRITTEN WITHOUT AsyncThunk 
     const formHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setLoading(true)
@@ -110,7 +63,7 @@ export const LoginModal = (props: LoginModalProps) => {
                         username.setDirty(false)
                         password.setValue("")
                         password.setDirty(false)
-                        setLoginModal(false)
+                        setLoginModallState(false)
                         setAuthError("")
                     } else {
                         setAuthError(`${UNKNOWN_ERROR}`)
@@ -130,7 +83,7 @@ export const LoginModal = (props: LoginModalProps) => {
         <BaseModal
             isVisible={isLoginModal}
             title="Sign In"
-            setModalState={setLoginModal}
+            setModalState={setLoginModallState}
         >
             {isLoading && <Loader />}
             <ModalSubtitle callback={openSignUpModal} title="Don't have an account?" linkText="Sign Up" />

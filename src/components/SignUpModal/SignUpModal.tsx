@@ -1,6 +1,6 @@
 import cl from "./SignUpModal.module.css"
-import { ModalGlobalError } from "../../components/ModalGlobalError/ModalGlobalError"
-import { ModalSubtitle } from "../../components/ModalSubtitle/ModalSubtitle"
+import { ModalGlobalError } from "../ModalGlobalError/ModalGlobalError"
+import { ModalSubtitle } from "../ModalSubtitle/ModalSubtitle"
 import { MAX_LOGIN_LENGTH, MAX_PASSWORD_LENGTH, MIN_LOGIN_LENGTH, MIN_PASSWORD_LENGTH } from "../../constants/lengthConstants"
 import { useInput } from "../../hooks/useInput"
 import { useAppDispatch } from "../../hooks/useRedux"
@@ -13,19 +13,13 @@ import { Loader } from "../../UI/loaders/Loader"
 import { BaseModal } from "../../UI/modals/BaseModal"
 import { getUserResponse, signUpUser } from "../../api/api"
 import { USER_NOT_FOUND } from "../../constants/textContants"
+import { useModalsState } from "../../hooks/useStateHooks/useModalsState"
 import { useCallback, useState } from "react"
 
-interface LoginModalProps {
-    isSignUpModal: boolean
-    isLoginModal: boolean
-    setLoginModal: React.Dispatch<React.SetStateAction<boolean>>
-    setSignUpModal: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-export const SignUpModal = (props: LoginModalProps) => {
+export const SignUpModal = () => {
 
     const dispatch = useAppDispatch()
-    const { isSignUpModal, setLoginModal, setSignUpModal } = props
+    const { isSignUpModal, setSignUpModalState, setLoginModallState } = useModalsState()
 
     const username = useInput("", {
         minLength: MIN_LOGIN_LENGTH,
@@ -39,9 +33,9 @@ export const SignUpModal = (props: LoginModalProps) => {
     const sumbitButtonState = username.isValid && password.isValid
 
     const openLoginModal = useCallback(() => {
-        setLoginModal(true)
-        setSignUpModal(false)
-    }, [setLoginModal, setSignUpModal])
+        setLoginModallState(true)
+        setSignUpModalState(false)
+    }, [setLoginModallState, setSignUpModalState])
 
     const [authError, setAuthError] = useState("")
     const [isLoading, setLoading] = useState(false)
@@ -67,7 +61,7 @@ export const SignUpModal = (props: LoginModalProps) => {
                 username.setDirty(false)
                 password.setValue("")
                 password.setDirty(false)
-                setSignUpModal(false)
+                setSignUpModalState(false)
                 setAuthError("")
             } else {
                 setAuthError(`${USER_NOT_FOUND}`)
@@ -80,8 +74,8 @@ export const SignUpModal = (props: LoginModalProps) => {
     return (
         <BaseModal
             isVisible={isSignUpModal}
+            setModalState={setSignUpModalState}
             title="Sign Up"
-            setModalState={setSignUpModal}
         >
             {isLoading && <Loader />}
             <ModalSubtitle callback={openLoginModal} title="Have an account?" linkText="Sign In" />
