@@ -1,0 +1,11 @@
+.order {
+    display: flex;
+    flex-direction: column;
+}
+.order__title {
+    font-size: 2rem;
+    font-weight: 600;
+}
+.order__form {
+    
+}

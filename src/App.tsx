@@ -3,6 +3,7 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import { Layout } from "./components/Layout/Layout";
 import RequireAuth from "./middleware/RequireAuth";
 import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
+import { OrderPage } from "./pages/OrderPage/OrderPage";
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import { lazy, Suspense } from "react"
 
@@ -19,6 +20,13 @@ const router = createBrowserRouter(createRoutesFromElements(
             <Route path="profile" element={
                 <Suspense fallback={<Loader />}>
                     <ProfilePage />
+                </Suspense>
+            } />
+        </Route>
+        <Route element={<RequireAuth allowedRoles={["Customer"]} />}>
+            <Route path="order" element={
+                <Suspense fallback={<Loader />}>
+                    <OrderPage />
                 </Suspense>
             } />
         </Route>

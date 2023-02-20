@@ -107,7 +107,14 @@
       "total_cost": 0
     }
   ],
-  "Cart_Product": [],
+  "Cart_Product": [
+    {
+      "cart_id": 1,
+      "product_sku": "HPRPB54Q32",
+      "quantity": 1,
+      "id": 1
+    }
+  ],
   "Status": [
     {
       "id": 1,

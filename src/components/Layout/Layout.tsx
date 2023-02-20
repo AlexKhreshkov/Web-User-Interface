@@ -14,37 +14,37 @@ import { Outlet } from "react-router-dom"
 export const Layout = () => {
 
     const dispatch = useAppDispatch()
-    const [isLoading, setLoading] = useState(false)
+    const [isLoading, setLoading] = useState(true)
 
     useEffect(() => {
         let roleName: Roles
         let username = ""
-        setLoading(true)
-        async function getData() {
-            if (currentUserExists()) {
-                username = getCurrentUser()!
-                roleName = "Customer"
-            } else if (currentAdminExists()) {
-                username = getCurrentAdmin()!
-                roleName = "Admin"
-            }
-            if (username) {
-                const user = (await dispatch(fetchUserResponse(username))).payload
-                if (user && typeof user !== "string") {
-                    dispatch(addUser({
-                        ...user,
-                        roleName,
-                    }))
-                }
-            }
-            if (roleName === "Customer") {
-                await dispatch(fetchUserCart())
-                await dispatch(fetchCartProducts())
-                await dispatch(fetchProductsToCart())
-            }
+        if (currentUserExists()) {
+            username = getCurrentUser()!
+            roleName = "Customer"
+        } else if (currentAdminExists()) {
+            username = getCurrentAdmin()!
+            roleName = "Admin"
         }
-        getData()
-        setLoading(false)
+        if (username) {
+            Promise.all([
+                dispatch(fetchUserResponse(username))
+                    .then(userResponse => userResponse.payload)
+                    .then(user => {
+                        if (user && typeof user !== "string") {
+                            dispatch(addUser({
+                                ...user,
+                                roleName,
+                            }))
+                        }
+                    }),
+                dispatch(fetchUserCart())
+                    .then(() => dispatch(fetchCartProducts()))
+                    .then(() => dispatch(fetchProductsToCart())),
+            ]).then(() => setLoading(false))
+        } else {
+            setLoading(false)
+        }
     }, [dispatch])
 
     if (isLoading) {
@@ -55,6 +55,7 @@ export const Layout = () => {
         <div className={cl.layout}>
             <Header />
             <Outlet />
+            <div style={{ flex: " 1 1 auto", visibility: "hidden" }}>CONTENT TO PRESS FOOTER DURING AMY PAGE LOADING</div>
             <Footer />
         </div>
     )

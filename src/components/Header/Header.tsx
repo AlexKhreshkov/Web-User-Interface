@@ -18,7 +18,6 @@ export const Header = () => {
     const [isToggle, setToggle] = useState(false)
     const { user } = useUser()
     const { isLoginModal, isSignUpModal, isCart } = useModalsState()
-
     const handleToggle = () => setToggle(isToggle => !isToggle)
 
     return (
