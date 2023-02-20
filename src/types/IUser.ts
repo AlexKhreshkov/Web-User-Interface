@@ -20,3 +20,9 @@ export interface IUser {
     last_name: string
     email: string
 }
+
+export interface IUserPatch {
+    first_name?: string
+    last_name?: string
+    email?: string
+}

@@ -4,6 +4,7 @@ import { Layout } from "./components/Layout/Layout";
 import RequireAuth from "./middleware/RequireAuth";
 import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
 import { OrderPage } from "./pages/OrderPage/OrderPage";
+import RequireCart from "./middleware/RequireCart";
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import { lazy, Suspense } from "react"
 
@@ -24,9 +25,18 @@ const router = createBrowserRouter(createRoutesFromElements(
             } />
         </Route>
         <Route element={<RequireAuth allowedRoles={["Customer"]} />}>
-            <Route path="order" element={
+            <Route element={<RequireCart />}>
+                <Route path="order" element={
+                    <Suspense fallback={<Loader />}>
+                        <OrderPage />
+                    </Suspense>
+                } />
+            </Route>
+        </Route>
+        <Route element={<RequireAuth allowedRoles={["Customer"]} />}>
+            <Route path="profile" element={
                 <Suspense fallback={<Loader />}>
-                    <OrderPage />
+                    <ProfilePage />
                 </Suspense>
             } />
         </Route>

@@ -8,6 +8,7 @@
     line-height: 1.5;
     cursor: pointer;
     transition: 0.5s;
+    max-width: 200px;
 }
 
 .button:disabled {

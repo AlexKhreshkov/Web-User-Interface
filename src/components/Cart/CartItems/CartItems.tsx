@@ -5,7 +5,7 @@ import cl from "../Cart.module.css"
 export const CartItems = () => {
 
     const { cartProducts } = useCartState()
-    
+
     return (
         <div className={cl.cart__items}>
             {cartProducts.map((cartProduct, index) =>

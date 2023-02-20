@@ -10,7 +10,7 @@ export const ProfileIcon = memo(() => {
     return (
         <>
             <li>
-                <Link to="/">
+                <Link to="/profile">
                     <IoPersonOutline />
                 </Link>
                 <span>{user?.username}</span>

@@ -7,11 +7,18 @@ import { BaseModal } from "../../UI/modals/BaseModal"
 import { Button } from "../../UI/buttons/Button"
 import { useCartState } from "../../hooks/useStateHooks/useCartState"
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 export const Cart = () => {
 
     const { isCart, setCartModalState } = useModalsState()
     const { cartLength } = useCartState()
+    const navigate = useNavigate()
+
+    const goToOrderPage = () => {
+        setCartModalState(false)
+        navigate("/order")
+    }
 
     useEffect(() => {
         if (cartLength === 0) {
@@ -29,7 +36,9 @@ export const Cart = () => {
                 <CartLength />
                 <CartItems />
                 <CartTotal />
-                <Button>CHECKOUT CART</Button>
+                <div className={cl.cart__checkout}>
+                    <Button onClick={goToOrderPage}>CHECKOUT CART</Button>
+                </div>
             </div>
         </BaseModal>
     )

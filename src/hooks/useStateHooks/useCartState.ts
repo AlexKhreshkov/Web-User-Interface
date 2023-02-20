@@ -8,6 +8,7 @@ export const useCartState = () => {
     const cartLength = useAppSelector(state => state.cart.cart_product).length
     const isCartLoading = useAppSelector(state => state.cart.isLoading)
     const error = useAppSelector(state => state.cart.error)
+    const cartRoot = useAppSelector(state => state.cart)
 
     return {
         cart,
@@ -16,5 +17,6 @@ export const useCartState = () => {
         cartLength,
         isCartLoading,
         error,
+        cartRoot,
     }
 }

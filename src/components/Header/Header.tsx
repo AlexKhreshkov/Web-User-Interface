@@ -11,18 +11,24 @@ import { useModalsState } from "../../hooks/useStateHooks/useModalsState"
 import { Cart } from "../Cart/Cart"
 import { LoginModal } from "../LoginModal/LoginModal"
 import { SignUpModal } from "../SignUpModal/SignUpModal"
+import { useCartState } from "../../hooks/useStateHooks/useCartState"
+import { Loader } from "../../UI/loaders/Loader"
 import { useState } from "react"
 
 export const Header = () => {
 
     const [isToggle, setToggle] = useState(false)
-    const { user } = useUser()
+    const { user, isUserLoading } = useUser()
+    const { isCartLoading } = useCartState()
     const { isLoginModal, isSignUpModal, isCart } = useModalsState()
     const handleToggle = () => setToggle(isToggle => !isToggle)
+
+    const isLoading = isUserLoading || isCartLoading
 
     return (
         <div className={cl.header__container}>
             <Container>
+                {isLoading && <Loader />}
                 {isCart && <Cart />}
                 {isSignUpModal && <SignUpModal />}
                 {isLoginModal && <LoginModal />}

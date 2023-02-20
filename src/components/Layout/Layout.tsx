@@ -27,25 +27,24 @@ export const Layout = () => {
             roleName = "Admin"
         }
         if (username) {
-            Promise.all([
-                dispatch(fetchUserResponse(username))
-                    .then(userResponse => userResponse.payload)
-                    .then(user => {
-                        if (user && typeof user !== "string") {
-                            dispatch(addUser({
-                                ...user,
-                                roleName,
-                            }))
-                        }
-                    }),
-                dispatch(fetchUserCart())
+            dispatch(fetchUserResponse(username))
+                .then(userResponse => userResponse.payload)
+                .then(user => {
+                    if (user && typeof user !== "string") {
+                        dispatch(addUser({
+                            ...user,
+                            roleName,
+                        }))
+                    }
+                })
+                .then(() => dispatch(fetchUserCart())
                     .then(() => dispatch(fetchCartProducts()))
-                    .then(() => dispatch(fetchProductsToCart())),
-            ]).then(() => setLoading(false))
+                    .then(() => dispatch(fetchProductsToCart())))
+                .then(() => setLoading(false))
         } else {
             setLoading(false)
         }
-    }, [dispatch])
+    }, [])
 
     if (isLoading) {
         return <Loader />
@@ -55,7 +54,9 @@ export const Layout = () => {
         <div className={cl.layout}>
             <Header />
             <Outlet />
-            <div style={{ flex: " 1 1 auto", visibility: "hidden" }}>CONTENT TO PRESS FOOTER DURING AMY PAGE LOADING</div>
+            <div style={{ flex: " 1 1 auto", visibility: "hidden" }}>
+                CONTENT TO PRESS FOOTER DURING ANY PAGE IS LOADING
+            </div>
             <Footer />
         </div>
     )

@@ -9,6 +9,8 @@ interface RequireAuthProps {
 const RequireAuth = ({ allowedRoles }: RequireAuthProps) => {
 
     const location = useLocation()
+    const fromPage = location.state?.from?.pathname || "/"
+
     const { user } = useUser()
 
     if (user?.roleName) {
@@ -18,7 +20,7 @@ const RequireAuth = ({ allowedRoles }: RequireAuthProps) => {
             )
         }
     }
-    return <Navigate to="/" state={{ from: location }} replace />
+    return <Navigate to={fromPage} state={{ from: fromPage }} replace />
 }
 
 export default RequireAuth

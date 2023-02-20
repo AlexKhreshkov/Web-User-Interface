@@ -1,6 +1,7 @@
 import { getRoleName } from "../../api/api";
 import { BASE_URL } from "../../constants/baseUrl";
-import { IUser, IUserReponse } from "../../types/IUser";
+import { IUser, IUserPatch, IUserReponse } from "../../types/IUser";
+import { RootState } from "..";
 import axios from "axios";
 import { AnyAction, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -17,8 +18,6 @@ const initialState: IUserState = {
     isLoading: false,
     error: "",
 }
-
-
 
 export const fetchUserResponse = createAsyncThunk<IUserReponse | null, string, { rejectValue: string }>(
     "user/fetchUserResponse",
@@ -54,6 +53,24 @@ export const fetchUserWithRoleName = createAsyncThunk<IUser, IUserReponse, { rej
     },
 )
 
+export const updateUserInfo = createAsyncThunk<IUser, IUserPatch, { rejectValue: string, state: RootState }>(
+    "user/updateUserInfo",
+    async function (data, { rejectWithValue, getState }) {
+        const userId = getState().user.user?.id
+        if (userId) {
+            try {
+                const patchedUserResponse = await axios.patch(`${BASE_URL}/user/${userId}`, {
+                    ...data,
+                })
+                return patchedUserResponse.data
+            }
+            catch (error) {
+                return rejectWithValue("Failed to update user info")
+            }
+        }
+    },
+)
+
 const userSlice = createSlice({
     name: "user",
     initialState,
@@ -84,6 +101,16 @@ const userSlice = createSlice({
             })
             .addCase(fetchUserWithRoleName.fulfilled, (state, action) => {
                 state.user = action.payload
+                state.isLoading = false
+                state.error = ""
+            })
+            .addCase(updateUserInfo.fulfilled, (state, action) => {
+                const newUserInfo = action.payload
+                if (state.user) {
+                    state.user.first_name = newUserInfo.first_name
+                    state.user.last_name = newUserInfo.last_name
+                    state.user.email = newUserInfo.email
+                }
                 state.isLoading = false
                 state.error = ""
             })

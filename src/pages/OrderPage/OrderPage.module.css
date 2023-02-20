@@ -1,11 +1,14 @@
 .order {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
+
 .order__title {
     font-size: 2rem;
     font-weight: 600;
-}
-.order__form {
-    
+    text-align: center;
+    margin: 10px 0;
 }
