@@ -2,6 +2,7 @@ import cl from "./AddToCart.module.css"
 import { useAppDispatch } from "../../hooks/useRedux"
 import { fetchCartProducts, fetchProductsToCart, fetchUserCart, postProductToCart } from "../../store/slices/cartSlice"
 import { useCartState } from "../../hooks/useStateHooks/useCartState"
+import { useUser } from "../../hooks/useStateHooks/useUser"
 import { IoCartOutline } from "react-icons/io5"
 
 interface AddToCartProps {
@@ -10,9 +11,12 @@ interface AddToCartProps {
 }
 
 export const AddToCart = (props: AddToCartProps) => {
-    const { sku, children } = props
+
     const dispatch = useAppDispatch()
+    const { sku, children } = props
     const { cart, cart_products } = useCartState()
+    const { user } = useUser()
+
     const cart_id = cart?.id ? cart.id : -1
 
     const addProductToCartHandler = () => {
@@ -28,6 +32,10 @@ export const AddToCart = (props: AddToCartProps) => {
             .then(() => dispatch(fetchUserCart()))
             .then(() => dispatch(fetchCartProducts()))
             .then(() => dispatch(fetchProductsToCart()))
+    }
+
+    if (user?.roleName !== "Customer") {
+        return <></>
     }
 
     return (

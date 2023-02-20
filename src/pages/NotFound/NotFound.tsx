@@ -1,7 +1,7 @@
-import cl from "./ErrorPage.module.css"
+import cl from "./NotFound.module.css"
 import { Container } from "../../components/Containers/Container"
 
-const Error = () => {
+const NotFound = () => {
     return (
         <div className={cl.errorPage}>
             <Container>
@@ -12,4 +12,4 @@ const Error = () => {
         </div>
     )
 }
-export default Error
+export default NotFound

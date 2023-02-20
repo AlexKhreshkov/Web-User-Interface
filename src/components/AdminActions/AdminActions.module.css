@@ -1,0 +1,53 @@
+.adminActions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.action {}
+
+.action__header {
+    display: flex;
+}
+
+.action__name {}
+
+.action__total {
+    text-align: center;
+}
+
+.action__add {
+    flex: 1 1 auto;
+    text-align: end;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.table {
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table thead tr {
+    background-color: var(--green);
+    text-align: left;
+}
+
+.table th,
+.table td {
+    padding: 6px 8px;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    max-width: 30%;
+}
+
+.buttonsCol {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

@@ -1,5 +1,6 @@
 import { useUser } from "../hooks/useStateHooks/useUser";
 import { Roles } from "../types/IRole";
+import NotFound from "../pages/NotFound/NotFound";
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 
 interface RequireAuthProps {
@@ -20,7 +21,7 @@ const RequireAuth = ({ allowedRoles }: RequireAuthProps) => {
             )
         }
     }
-    return <Navigate to={fromPage} state={{ from: fromPage }} replace />
+    return <NotFound />
 }
 
 export default RequireAuth

@@ -76,24 +76,28 @@
   ],
   "Product": [
     {
+      "id": 1,
       "sku": "HPRPB54Q32",
       "name": "HP 15.6 FHD",
       "description": "HP 15.6 FHD Intel Core i5-1235U 8GB RAM 512GB SSD Intel Iris Xe Windows 11 Laptop",
-      "price": 1200
+      "price": 1234
     },
     {
+      "id": 2,
       "sku": "MCBK123AB1",
       "name": "MacBook Air 13-inch",
       "description": "MacBook Air 13-inch: Apple M1 Chip with 8 Core CPU and 7 Core GPU 256GB storage 8GB Memory - Gold",
       "price": 1500
     },
     {
+      "id": 3,
       "sku": "TESTPRODUCT1",
       "name": "TESTPRODUCT1",
       "description": "MacBook Air 13-inch: Apple M1 Chip with 8 Core CPU and 7 Core GPU 256GB storage 8GB Memory - Gold",
       "price": 123
     },
     {
+      "id": 4,
       "sku": "TESTPRODUCT2",
       "name": "TESTPRODUCT2",
       "description": "TESTPRODUCT2",
@@ -107,7 +111,32 @@
       "total_cost": 0
     }
   ],
-  "Cart_Product": [],
+  "Cart_Product": [
+    {
+      "cart_id": -1,
+      "product_sku": "HPRPB54Q32",
+      "quantity": 1,
+      "id": 1
+    },
+    {
+      "cart_id": -1,
+      "product_sku": "HPRPB54Q32",
+      "quantity": 1,
+      "id": 2
+    },
+    {
+      "cart_id": -1,
+      "product_sku": "HPRPB54Q32",
+      "quantity": 1,
+      "id": 3
+    },
+    {
+      "cart_id": 1,
+      "product_sku": "HPRPB54Q32",
+      "quantity": 1,
+      "id": 4
+    }
+  ],
   "Status": [
     {
       "id": 1,

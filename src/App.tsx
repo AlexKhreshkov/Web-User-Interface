@@ -1,10 +1,11 @@
 import { Loader } from "./UI/loaders/Loader";
-import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import { Layout } from "./components/Layout/Layout";
 import RequireAuth from "./middleware/RequireAuth";
 import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
 import { OrderPage } from "./pages/OrderPage/OrderPage";
 import RequireCart from "./middleware/RequireCart";
+import { AdminPage } from "./pages/AdminPage/AdminPage";
+import NotFound from "./pages/NotFound/NotFound";
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import { lazy, Suspense } from "react"
 
@@ -40,9 +41,16 @@ const router = createBrowserRouter(createRoutesFromElements(
                 </Suspense>
             } />
         </Route>
+        <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
+            <Route path="admin" element={
+                <Suspense fallback={<Loader />}>
+                    <AdminPage />
+                </Suspense>
+            } />
+        </Route>
         <Route path="*" element={
             <Suspense fallback={<Loader />}>
-                <ErrorPage />
+                <NotFound />
             </Suspense>
         } />
     </Route>,

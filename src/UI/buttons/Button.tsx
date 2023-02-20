@@ -3,7 +3,7 @@ import cl from "./Button.module.css"
 interface IButtonProps {
     onClick?: React.MouseEventHandler<HTMLButtonElement>,
     isDisabled?: boolean
-    children: string
+    children: React.ReactNode
 }
 
 export const Button = (props: IButtonProps) => {

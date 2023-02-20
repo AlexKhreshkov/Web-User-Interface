@@ -8,6 +8,7 @@ import { useUser } from "../../hooks/useStateHooks/useUser"
 import { useAppDispatch } from "../../hooks/useRedux"
 import { updateUserInfo } from "../../store/slices/userSlice"
 import { ProfileTitle } from "../../components/ProfileTitle/ProfileTitle"
+import { GoBackButton } from "../../components/GoBackBtn/GoBackBtn"
 
 export const ProfilePage = () => {
 
@@ -43,13 +44,20 @@ export const ProfilePage = () => {
     return (
         <Container>
             <div className={cl.profile}>
+                <div className={cl.goBack}>
+                    <GoBackButton />
+                </div>
                 <ProfileTitle />
                 <UserInfoForm
                     firstName={firstName}
                     lastName={lastName}
                     email={email}
                 />
-                <Button isDisabled={!buttonState} onClick={updateUserInfoHanlder}>UPDATE INFO</Button>
+                <Button
+                    isDisabled={!buttonState}
+                    onClick={updateUserInfoHanlder}>
+                    UPDATE INFO
+                </Button>
             </div>
         </Container>
     )
