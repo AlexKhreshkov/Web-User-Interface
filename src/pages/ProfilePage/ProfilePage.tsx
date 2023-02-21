@@ -53,11 +53,13 @@ const ProfilePage = () => {
                     lastName={lastName}
                     email={email}
                 />
-                <Button
-                    isDisabled={!buttonState}
-                    onClick={updateUserInfoHanlder}>
-                    UPDATE INFO
-                </Button>
+                <div className={cl.updateInfo}>
+                    <Button
+                        isDisabled={!buttonState}
+                        onClick={updateUserInfoHanlder}>
+                        UPDATE INFO
+                    </Button>
+                </div>
             </div>
         </Container>
     )
