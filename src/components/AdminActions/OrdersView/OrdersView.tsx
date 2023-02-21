@@ -25,7 +25,6 @@ export const OrdersView = () => {
             <ViewTotal count={orders.length} name="Order" />
             <div className={cl.action__header}>
                 <div>Orders</div>
-                <div className={cl.action__add}>Add</div>
             </div>
             <table className={cl.table}>
                 <thead>

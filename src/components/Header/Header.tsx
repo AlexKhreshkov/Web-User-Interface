@@ -13,7 +13,6 @@ import { LoginModal } from "../LoginModal/LoginModal"
 import { SignUpModal } from "../SignUpModal/SignUpModal"
 import { useCartState } from "../../hooks/useStateHooks/useCartState"
 import { Loader } from "../../UI/loaders/Loader"
-import { Button } from "../../UI/buttons/Button"
 import { GoToAdminPageBtn } from "../GoToAdminPageBtn/GoToAdminPageBtn"
 import { useState } from "react"
 

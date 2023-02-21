@@ -28,6 +28,19 @@ export const fetchProducts = createAsyncThunk<IProduct[], void, { rejectValue: s
     },
 )
 
+export const fetchProduct = createAsyncThunk<IProduct, string, { rejectValue: string }>(
+    "product/fetchProduct",
+    async function (productSku, { rejectWithValue }) {
+        try {
+            const productResponse = await axios.get<IProduct[]>(`${BASE_URL}/product/?sku=${productSku}`)
+            const product = productResponse.data[0]
+            return product
+        } catch (error) {
+            return rejectWithValue("Failed to fetch product")
+        }
+    },
+)
+
 // json server error without pk (added id pk to IPost istead sku/ sku(pk, fk) => id(pk), sku(fk))
 export const changeProfuctInfo = createAsyncThunk<IProduct, IProduct, { rejectValue: string }>(
     "product/changeProfuctInfo",
@@ -73,6 +86,14 @@ const productSlice = createSlice({
                 if (product) {
                     product = changedProduct
                 }
+                state.isLoading = false
+                state.error = ""
+            })
+            .addCase(fetchProduct.pending, (state) => {
+                state.isLoading = true
+                state.error = ""
+            })
+            .addCase(fetchProduct.fulfilled, (state) => {
                 state.isLoading = false
                 state.error = ""
             })

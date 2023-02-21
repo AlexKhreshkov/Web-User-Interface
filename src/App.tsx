@@ -6,6 +6,7 @@ import { OrderPage } from "./pages/OrderPage/OrderPage";
 import RequireCart from "./middleware/RequireCart";
 import { AdminPage } from "./pages/AdminPage/AdminPage";
 import NotFound from "./pages/NotFound/NotFound";
+import { AdminOrderDetail } from "./pages/AdminOrderDetail/AdminOrderDetail";
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import { lazy, Suspense } from "react"
 
@@ -45,6 +46,13 @@ const router = createBrowserRouter(createRoutesFromElements(
             <Route path="admin" element={
                 <Suspense fallback={<Loader />}>
                     <AdminPage />
+                </Suspense>
+            } />
+        </Route>
+        <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
+            <Route path="admin/order/:id" element={
+                <Suspense fallback={<Loader />}>
+                    <AdminOrderDetail />
                 </Suspense>
             } />
         </Route>

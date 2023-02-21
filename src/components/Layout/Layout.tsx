@@ -44,7 +44,7 @@ export const Layout = () => {
         } else {
             setLoading(false)
         }
-    }, [])
+    }, [dispatch])
 
     if (isLoading) {
         return <Loader />
