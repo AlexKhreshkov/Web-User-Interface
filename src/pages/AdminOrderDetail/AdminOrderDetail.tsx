@@ -13,3 +13,5 @@ export const AdminOrderDetail = () => {
         </Container>
     )
 }
+
+export default AdminOrderDetail

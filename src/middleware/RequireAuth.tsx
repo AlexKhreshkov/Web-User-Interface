@@ -11,6 +11,7 @@ const RequireAuth = ({ allowedRoles }: RequireAuthProps) => {
 
     const { user } = useUser()
 
+    //Not found page approach
     if (user?.roleName) {
         if (allowedRoles.includes(user.roleName)) {
             return (
@@ -19,6 +20,16 @@ const RequireAuth = ({ allowedRoles }: RequireAuthProps) => {
         }
     }
     return <NotFound />
+
+    // Redirect approach
+    // if (user?.roleName) {
+    //     if (allowedRoles.includes(user.roleName)) {
+    //         return (
+    //             children
+    //         )
+    //     }
+    // }
+    // return <Navigate to="/" state={{ from: location }} />
 }
 
 export default RequireAuth

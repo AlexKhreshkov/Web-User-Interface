@@ -10,7 +10,7 @@ import { updateUserInfo } from "../../store/slices/userSlice"
 import { ProfileTitle } from "../../components/ProfileTitle/ProfileTitle"
 import { GoBackButton } from "../../components/GoBackBtn/GoBackBtn"
 
-export const ProfilePage = () => {
+const ProfilePage = () => {
 
     const { user } = useUser()
     const dispatch = useAppDispatch()
@@ -62,3 +62,4 @@ export const ProfilePage = () => {
         </Container>
     )
 }
+export default ProfilePage

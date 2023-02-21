@@ -5,7 +5,7 @@ import { Container } from "../../components/Containers/Container"
 import { ProfileTitle } from "../../components/ProfileTitle/ProfileTitle"
 import { SiteAdministration } from "../../components/SiteAdministration/SiteAdministration"
 
-export const AdminPage = () => {
+const AdminPage = () => {
     return (
         <Container>
             <div className={cl.adminPage}>
@@ -16,3 +16,5 @@ export const AdminPage = () => {
         </Container>
     )
 }
+
+export default AdminPage

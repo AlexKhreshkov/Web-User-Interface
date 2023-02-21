@@ -73,7 +73,7 @@ export const OrderDetail = () => {
 
     if (isLoading) {
         return <Loader />
-    }                               
+    }
     if (ordersError) {
         return <div>Order not found</div>
     }

@@ -7,7 +7,8 @@ export const GoBackButton = memo(() => {
 
     const navigate = useNavigate()
     const location = useLocation()
-    const fromPage = location.state?.from?.pathname || "/"
+    const fromPage = location.state?.from?.pathname || -1
+
     const goBack = () => navigate(fromPage)
 
     return (

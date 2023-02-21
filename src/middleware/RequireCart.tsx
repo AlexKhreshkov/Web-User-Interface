@@ -1,7 +1,6 @@
 import { useCartState } from "../hooks/useStateHooks/useCartState";
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 
-
 const RequireCart = () => {
 
     const location = useLocation()

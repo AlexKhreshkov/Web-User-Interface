@@ -16,7 +16,7 @@ import { useCartState } from "../../hooks/useStateHooks/useCartState"
 import { deleteFromCart } from "../../store/slices/cartSlice"
 import { useNavigate } from "react-router-dom"
 
-export const OrderPage = () => {
+const OrderPage = () => {
 
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
@@ -97,3 +97,5 @@ export const OrderPage = () => {
         </Container>
     )
 }
+
+export default OrderPage

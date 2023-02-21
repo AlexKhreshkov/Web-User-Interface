@@ -1,16 +1,16 @@
 import { Loader } from "./UI/loaders/Loader";
 import { Layout } from "./components/Layout/Layout";
 import RequireAuth from "./middleware/RequireAuth";
-import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
-import { OrderPage } from "./pages/OrderPage/OrderPage";
 import RequireCart from "./middleware/RequireCart";
-import { AdminPage } from "./pages/AdminPage/AdminPage";
-import NotFound from "./pages/NotFound/NotFound";
-import { AdminOrderDetail } from "./pages/AdminOrderDetail/AdminOrderDetail";
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import { lazy, Suspense } from "react"
 
 const MainPage = lazy(() => import("./pages/Main/Main"))
+const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage"))
+const OrderPage = lazy(() => import("./pages/OrderPage/OrderPage"))
+const AdminPage = lazy(() => import("./pages/AdminPage/AdminPage"))
+const AdminOrderDetailPage = lazy(() => import("./pages/AdminOrderDetail/AdminOrderDetail"))
+const NotFoundPage = lazy(() => import("./pages/NotFound/NotFound"))
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout />}>
@@ -52,13 +52,13 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
             <Route path="admin/order/:id" element={
                 <Suspense fallback={<Loader />}>
-                    <AdminOrderDetail />
+                    <AdminOrderDetailPage />
                 </Suspense>
             } />
         </Route>
         <Route path="*" element={
             <Suspense fallback={<Loader />}>
-                <NotFound />
+                <NotFoundPage />
             </Suspense>
         } />
     </Route>,
