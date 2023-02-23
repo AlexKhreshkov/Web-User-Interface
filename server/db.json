@@ -21,8 +21,8 @@
     },
     {
       "id": 2,
-      "username": "John",
-      "password": "john",
+      "username": "user",
+      "password": "user",
       "role": 1,
       "first_name": "John",
       "last_name": "John",
@@ -45,33 +45,6 @@
       "last_name": "",
       "email": "",
       "id": 4
-    },
-    {
-      "username": "admin2",
-      "password": "admin2",
-      "role": 1,
-      "first_name": "",
-      "last_name": "",
-      "email": "",
-      "id": 5
-    },
-    {
-      "username": "admin3",
-      "password": "admin3",
-      "role": 1,
-      "first_name": "",
-      "last_name": "",
-      "email": "",
-      "id": 6
-    },
-    {
-      "username": "admin4",
-      "password": "admin3sda",
-      "role": 1,
-      "first_name": "",
-      "last_name": "",
-      "email": "",
-      "id": 7
     }
   ],
   "Product": [
@@ -111,32 +84,7 @@
       "total_cost": 0
     }
   ],
-  "Cart_Product": [
-    {
-      "cart_id": -1,
-      "product_sku": "HPRPB54Q32",
-      "quantity": 1,
-      "id": 1
-    },
-    {
-      "cart_id": -1,
-      "product_sku": "HPRPB54Q32",
-      "quantity": 1,
-      "id": 2
-    },
-    {
-      "cart_id": -1,
-      "product_sku": "HPRPB54Q32",
-      "quantity": 1,
-      "id": 3
-    },
-    {
-      "cart_id": 1,
-      "product_sku": "HPRPB54Q32",
-      "quantity": 1,
-      "id": 4
-    }
-  ],
+  "Cart_Product": [],
   "Status": [
     {
       "id": 1,
@@ -153,66 +101,36 @@
   ],
   "Order": [
     {
-      "id": 1,
       "user_id": 1,
-      "created": "JS DATE",
-      "status": "formed"
-    },
-    {
-      "id": 2,
-      "user_id": 2,
-      "created": "JS DATE",
-      "status": "formed"
-    },
-    {
-      "user_id": 1,
-      "created": "JS DATE",
       "status": "formed",
-      "id": 3
+      "created": "Thu Feb 23 2023 22:04:52 GMT+1300 (New Zealand Daylight Time)",
+      "id": 1
     },
     {
       "user_id": 1,
       "status": "formed",
-      "created": "Mon Feb 20 2023 18:29:29 GMT+1300 (New Zealand Daylight Time)",
-      "id": 4
-    },
-    {
-      "user_id": 1,
-      "status": "formed",
-      "created": "Mon Feb 20 2023 18:43:29 GMT+1300 (New Zealand Daylight Time)",
-      "id": 5
-    },
-    {
-      "user_id": 1,
-      "status": "formed",
-      "created": "Mon Feb 20 2023 18:49:52 GMT+1300 (New Zealand Daylight Time)",
-      "id": 6
+      "created": "Thu Feb 23 2023 22:05:29 GMT+1300 (New Zealand Daylight Time)",
+      "id": 2
     }
   ],
   "Order_Product": [
     {
-      "order_id": 5,
+      "order_id": 2,
       "product_sku": "HPRPB54Q32",
       "quantity": 1,
       "id": 1
     },
     {
-      "order_id": 5,
-      "product_sku": "MCBK123AB1",
+      "order_id": 2,
+      "product_sku": "HPRPB54Q32",
       "quantity": 1,
       "id": 2
     },
     {
-      "order_id": 6,
-      "product_sku": "HPRPB54Q32",
-      "quantity": 1,
-      "id": 3
-    },
-    {
-      "order_id": 6,
+      "order_id": 2,
       "product_sku": "MCBK123AB1",
       "quantity": 1,
-      "id": 4
+      "id": 3
     }
   ]
 }

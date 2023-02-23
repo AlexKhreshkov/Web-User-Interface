@@ -1,20 +1,12 @@
 import { OrderView } from "./OrderView"
 import cl from "../AdminActions.module.css"
 import { useOrdersState } from "../../../hooks/useStateHooks/useOrdersState"
-import { useAppDispatch } from "../../../hooks/useRedux"
-import { fetchOrders } from "../../../store/slices/orderSlice"
 import { Loader } from "../../../UI/loaders/Loader"
 import { ViewTotal } from "../ViewTotal/ViewTotal"
-import { useEffect } from "react"
 
 export const OrdersView = () => {
 
-    const dispatch = useAppDispatch()
     const { orders, isOrderLoading } = useOrdersState()
-
-    useEffect(() => {
-        dispatch(fetchOrders())
-    }, [dispatch])
 
     if (isOrderLoading) {
         return <Loader />

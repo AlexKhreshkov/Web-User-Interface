@@ -22,3 +22,4 @@ describe("Test localstorage auth", () => {
         expect(typeof localStorage.getItem(adminRoleKey)).not.toBe("string")
     })
 })
+

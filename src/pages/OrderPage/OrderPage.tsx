@@ -13,7 +13,7 @@ import { updateUserInfo } from "../../store/slices/userSlice"
 import { createOrder, createOrderProduct } from "../../store/slices/orderSlice"
 import { IOrder, IOrderProduct } from "../../types/IOrder"
 import { useCartState } from "../../hooks/useStateHooks/useCartState"
-import { deleteFromCart } from "../../store/slices/cartSlice"
+import { clearCart, deleteFromCart } from "../../store/slices/cartSlice"
 import { useNavigate } from "react-router-dom"
 
 const OrderPage = () => {
@@ -21,7 +21,7 @@ const OrderPage = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const { user } = useUser()
-    const { cartProducts, cartRoot } = useCartState()
+    const { cartProducts } = useCartState()
 
     const firstName = useInput(user?.first_name, {
         minLength: MIN_FIRST_NAME_LENGTH,
@@ -71,10 +71,8 @@ const OrderPage = () => {
                 .then(() => {
                     for (const product of cartProducts) {
                         dispatch(deleteFromCart(product.id))
-                        cartRoot.cartProducts = []
-                        cartRoot.cart_product = []
                     }
-                })
+                }).then(() => dispatch(clearCart()))
             ,
         ]).then(() => {
             navigate("/")

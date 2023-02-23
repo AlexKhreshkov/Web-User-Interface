@@ -167,6 +167,13 @@ const cartSlice = createSlice({
                 state.cart.total_cost = sum
             }
         },
+        clearCart(state) {
+            if (state.cart) {
+                state.cart = { ...state.cart, total_cost: 0 }
+                state.cartProducts = []
+                state.cart_product = []
+            }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -220,7 +227,7 @@ const cartSlice = createSlice({
     },
 })
 
-export const { changeProductQuantity, calculateCartTotal } = cartSlice.actions
+export const { changeProductQuantity, calculateCartTotal, clearCart } = cartSlice.actions
 
 export const cartReducer = cartSlice.reducer
 
