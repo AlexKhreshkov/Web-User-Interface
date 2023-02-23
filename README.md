@@ -1,3 +1,30 @@
+### Describe in words what unit tests you would implement to check the functionality of the authentication service.
+I used both local storage and database to authenticate users. We can write unit tests for the function that interacts with the database to save the expected behavior of this function. For example, we can get a response with the following interface (User(id, username, password)). If the user entity in the database changes unit tests will fall and will know about the discrepancy (interfaces won’t help to solve this problem, because only with unit tests we can get real data). To log in user must have the next pair: role key: username in the local storage. If it doesn’t, he can authenticate by providing a username and password. Users can’t have only 1 role stored in the database and local storage, so we must check this condition during auth. That’s we used the following unit tests:
+```bash
+describe("Test localstorage auth", () => {
+    test("userLogin", () => {
+        userLogin("Username123")
+        const customer = localStorage.getItem(customerRoleKey)
+        const admin = localStorage.getItem(adminRoleKey)
+        expect(typeof customer === "string" && typeof admin !== "string").toBeTruthy()
+    })
+    test("adminLogin", () => {
+        adminLogin("adminName")
+        const customer = localStorage.getItem(customerRoleKey)
+        const admin = localStorage.getItem(adminRoleKey)
+        expect(typeof customer !== "string" && typeof admin === "string").toBeTruthy()
+    })
+    test("userLogout", () => {
+        userLogout()
+        expect(typeof localStorage.getItem(customerRoleKey)).not.toBe("string")
+    })
+    test("adminLogout", () => {
+        adminLogout()
+        expect(typeof localStorage.getItem(adminRoleKey)).not.toBe("string")
+    })
+})
+```
+
 # `Run app with fake db`
 npm run dev
 
