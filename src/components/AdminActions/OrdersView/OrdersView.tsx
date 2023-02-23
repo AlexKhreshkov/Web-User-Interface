@@ -14,7 +14,6 @@ export const OrdersView = () => {
 
     return (
         <div>
-            <ViewTotal count={orders.length} name="Order" />
             <div className={cl.action__header}>
                 <div>Orders</div>
             </div>
