@@ -1,3 +1,6 @@
+### Problems
+I haven't created api for cart_products with full information about products and quantity. So to get full information about product in the user's cart I sent the request for each product (5 product_id in the cart => 5 requests to the server). Due to this, I have much more complex logic with stroring objects at the store and huge amount of additional requests. In some cases my db crashed with the reason of lack memory.
+
 ### Describe in words what unit tests you would implement to check the functionality of the authentication service.
 I used both local storage and database to authenticate users. We can write unit tests for the function that interacts with the database to save the expected behavior of this function. For example, we can get a response with the following interface (User(id, username, password)). If the user entity in the database changes unit tests will fall and will know about the discrepancy (interfaces won’t help to solve this problem, because only with unit tests we can get real data). To log in user must have the next pair: role key: username in the local storage. If it doesn’t, he can authenticate by providing a username and password. Users can’t have only 1 role stored in the database and local storage, so we must check this condition during auth. Thats why I used the following unit tests:
 ```bash
